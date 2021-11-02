@@ -1,0 +1,42 @@
+{
+  "name": "artquiz",
+  "version": "1.0.0",
+  "description": "quiz with arts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development --open",
+    "dev-server": "cross-env NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaniaToper/ArtQuiz.git"
+  },
+  "keywords": [
+    "quiz",
+    "art",
+    "artquiz",
+    "rss"
+  ],
+  "author": "VaniaToper <vanjaqwe58@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VaniaToper/ArtQuiz/issues"
+  },
+  "homepage": "https://github.com/VaniaToper/ArtQuiz#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
