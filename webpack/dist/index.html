@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Document</title>
     <script src="/src/index.js"></script>
-  <script defer="defer" src="bundle.js"></script></head>
+  <script defer="defer" src="vendors-node_modules_babel_polyfill_lib_index_jsbundle.js"></script><script defer="defer" src="mainbundle.js"></script><link href="style.css" rel="stylesheet"></head>
   <body>
     <main class="art">
       <header class="art__header">
         <div class="art__logo"></div>
       </header>
-      <button class="art__card">
-        <img src="/assets/artists-quiz.jpg" alt="error">
-        <span>ARTISTS QUIZ</span>
-      </button>
-      <button class="art__card">
-        <img src="/assets/pictures-quiz.jpg" alt="error">
-        <span>PICTURES QUIZ</span>
-      </button>
+      <div class="art__content">
+        <button class="art__card artist">
+          <span>ARTISTS QUIZ</span>
+        </button>
+        <button class="art__card picture">
+          <span>PICTURES QUIZ</span>
+        </button>
+      </div>
       <button class="art__settings">Settings</button>
     </main>
   </body>

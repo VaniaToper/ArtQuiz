@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+$red: #f85c50;
+$white: #f7f7f7;
+
+@mixin direction-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+}
+main {
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.art {
+  @include direction-column();
+  button {
+    background-color: none;
+    background-repeat: no-repeat;
+  }
+  &__header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    line-height: 25px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    padding-bottom: 50px;
+    background-image: url("../assets/quiz.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #000;
+    }
+  }
+  &__content {
+    width: 100%;
+    height: 75%;
+    @include direction-column();
+    justify-content: space-between;
+  }
+  .picture {
+    background-image: url("../assets/pictures-quiz.png");
+    background-position-x: center;
+  }
+  .artist {
+    background-image: url("../assets/artists-quiz.jpg");
+    background-position: center;
+  }
+  &__card {
+    height: 45%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    padding-left: 5px;
+    background-size: cover;
+    transition: 0.2s;
+    span {
+      color: white;
+      font-weight: 300;
+      letter-spacing: 2px;
+      font-size: 20px;
+      transition: 0.2s;
+    }
+    &:hover {
+      opacity: 0.95;
+      span {
+        color: rgb(75, 75, 75);
+      }
+    }
+    &:active {
+      transform: scale(0.999);
+      opacity: 0.9;
+      span {
+        color: rgb(0, 0, 0);
+      }
+    }
+  }
+  &__settings {
+    background: #922d25;
+    border: 1.6px solid #922d25;
+    color: white;
+    padding: 7px 20px;
+    border-radius: 2px;
+    transition: 0.2s;
+    &:hover {
+      background: #74251f;
+    }
+    &:active {
+      transform: scale(0.985);
+      border: 1.6px solid rgb(47, 47, 47);
+      background: #f4f4f4;
+      color: black;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .art {
+    &__header {
+      font-size: 40px;
+      line-height: 35px;
+    }
+    &__card {
+      padding-left: 15px;
+      span {
+        font-size: 30px;
+      }
+    }
+    &__content {
+      height: 80%;
+    }
+    &__settings {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .art {
+    &__content {
+      max-width: 80%;
+      flex-direction: row;
+      gap: 0 7%;
+    }
+    &__card {
+      height: 80%;
+    }
+    &__settings {
+      padding: 12px 60px;
+      margin-bottom: 50px;
+    }
+  }
+}

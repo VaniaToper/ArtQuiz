@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPLugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
@@ -23,10 +24,13 @@ const optimization = () => {
 };
 
 module.exports = {
+  // watch: true,
   mode: 'development',
-  entry: '../src/index.js',
+  entry: {
+    main: ['@babel/polyfill', '../src/index.js'],
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name]bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -37,7 +41,7 @@ module.exports = {
   devServer: {
     port: 3000,
     open: true,
-    hot: isDev,
+    hot: true,
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -49,6 +53,14 @@ module.exports = {
     new MiniCssExtractPLugin({
       filename: 'style.css',
     }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.join(__dirname, '../assets'),
+    //       to: path.join(__dirname, 'dist'),
+    //     }
+    //   ]
+    // })
   ],
   optimization: optimization(),
   module: {
@@ -71,6 +83,20 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
+        test: /.jpg$/,
+        type: 'asset',
       },
     ],
   },
