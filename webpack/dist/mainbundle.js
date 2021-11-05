@@ -16,7 +16,7 @@
   \***********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dev_files_nullstyle_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dev-files/nullstyle.scss */ \"../src/dev-files/nullstyle.scss\");\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ \"../src/style.scss\");\n// import Logo from '../assets/artists-quiz.jpg'\n\n // console.log(Logo);\n\n//# sourceURL=webpack://artquiz/../src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dev_files_nullstyle_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dev-files/nullstyle.scss */ \"../src/dev-files/nullstyle.scss\");\n/* harmony import */ var _dev_files_variable_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dev-files/variable.scss */ \"../src/dev-files/variable.scss\");\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ \"../src/style.scss\");\n/* harmony import */ var _welcome_welcome_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome/welcome.scss */ \"../src/welcome/welcome.scss\");\n\n\n\n\n\n//# sourceURL=webpack://artquiz/../src/index.js?");
 
 /***/ }),
 
@@ -30,6 +30,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 /***/ }),
 
+/***/ "../src/dev-files/variable.scss":
+/*!**************************************!*\
+  !*** ../src/dev-files/variable.scss ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://artquiz/../src/dev-files/variable.scss?");
+
+/***/ }),
+
 /***/ "../src/style.scss":
 /*!*************************!*\
   !*** ../src/style.scss ***!
@@ -37,6 +47,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://artquiz/../src/style.scss?");
+
+/***/ }),
+
+/***/ "../src/welcome/welcome.scss":
+/*!***********************************!*\
+  !*** ../src/welcome/welcome.scss ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://artquiz/../src/welcome/welcome.scss?");
 
 /***/ })
 

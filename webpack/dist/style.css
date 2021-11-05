@@ -1,3 +1,7 @@
+/*!**********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/style.scss ***!
+  \**********************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap);
 /*!************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/dev-files/nullstyle.scss ***!
   \************************************************************************************************************************/
@@ -68,42 +72,136 @@ h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
   font-weight: 400; }
 
-/*!**********************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/style.scss ***!
-  \**********************************************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/dev-files/variable.scss ***!
+  \***********************************************************************************************************************/
+
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/style.scss (1) ***!
+  \**************************************************************************************************************/
+* {
+  font-family: "Poppins", sans-serif; }
+
+body {
+  display: flex;
+  align-items: center; }
+
 main {
   width: calc(100vw - 20px);
-  height: 100vh;
-  margin: 0 auto;
+  height: calc(100vh - 20px);
+  margin: 0px auto;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: space-between; }
 
 .art {
   display: flex;
   align-items: center;
   flex-direction: column; }
+  .art button {
+    background-color: none;
+    background-repeat: no-repeat; }
   .art__header {
-    display: block; }
-  .art__content {
-    height: 70%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between; }
-  .art__card {
-    height: 30%; }
-    .art__card .picture {
-      background-image: url(2a1c2f1cc5e87cb932dc.png); }
-    .art__card .aetist {
-      background-image: url(d3b1ecc02b309c00d238.jpg); }
-    .art__card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; }
-  .art__settings {
-    background: #F85C50;
-    padding: 7px 20px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    line-height: 25px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    padding-bottom: 50px;
+    background-image: url(39e7b5cc7dcda889c43f.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80px; }
+    .art__header::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #000; }
+
+/*!********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!../src/welcome/welcome.scss ***!
+  \********************************************************************************************************************/
+.art__content {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.art .picture {
+  background-image: url(2a1c2f1cc5e87cb932dc.png);
+  background-position-x: center; }
+
+.art .artist {
+  background-image: url(d3b1ecc02b309c00d238.jpg);
+  background-position: center; }
+
+.art__card {
+  height: 45%;
+  width: 100%;
+  display: flex;
+  align-items: end;
+  padding-left: 5px;
+  background-size: cover;
+  transition: 0.2s; }
+  .art__card span {
     color: white;
-    border-radius: 2px; }
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 20px;
+    transition: 0.2s; }
+  .art__card:hover {
+    opacity: 0.95; }
+    .art__card:hover span {
+      color: #4b4b4b; }
+  .art__card:active {
+    transform: scale(0.999);
+    opacity: 0.9; }
+    .art__card:active span {
+      color: black; }
+
+.art__button {
+  background: #922d25;
+  border: 1.6px solid #922d25;
+  color: white;
+  padding: 7px 20px;
+  border-radius: 2px;
+  transition: 0.2s; }
+  .art__button:hover {
+    background: #74251f; }
+  .art__button:active {
+    transform: scale(0.985);
+    border: 1.6px solid #2f2f2f;
+    background: #f4f4f4;
+    color: black; }
+
+@media screen and (min-width: 768px) {
+  .art__header {
+    font-size: 40px;
+    line-height: 35px; }
+  .art__card {
+    padding-left: 15px; }
+    .art__card span {
+      font-size: 30px; }
+  .art__content {
+    height: 80%; }
+  .art__settings {
+    font-size: 20px; } }
+
+@media screen and (min-width: 1024px) {
+  .art__content {
+    max-width: 80%;
+    flex-direction: row;
+    gap: 0 7%; }
+  .art__card {
+    height: 80%; }
+  .art__settings {
+    padding: 12px 60px;
+    margin-bottom: 50px; } }
 

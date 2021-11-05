@@ -1,4 +1,8 @@
-// import Logo from '../assets/artists-quiz.jpg'
 import './dev-files/nullstyle.scss';
+import './dev-files/variable.scss';
 import './style.scss';
-// console.log(Logo);
+import './welcome/welcome.scss';
+import './settings/settings.scss';
+import './categories/categories.scss';
+
+const settingsButton = document.querySelector('.welcome__button');
