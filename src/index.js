@@ -1,8 +1,10 @@
-import './dev-files/nullstyle.scss';
-import './dev-files/variable.scss';
-import './style.scss';
-import './welcome/welcome.scss';
-import './settings/settings.scss';
-import './categories/categories.scss';
+// JS
+import './js/'
+import './js/components/quenstions'
 
-const settingsButton = document.querySelector('.welcome__button');
+// SCSS
+import './assets/scss/main.scss'
+
+// CSS (example)
+// import './assets/css/main.css'
+

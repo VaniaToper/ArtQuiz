@@ -1,0 +1,73 @@
+.categories {
+  gap: 20px 0;
+  margin-bottom: -10px;
+  &__content {
+    width: 100%;
+    @include direction-column;
+    gap: 15px 0;
+    padding-bottom: 10px;
+  }
+  &__card {
+    width: 100%;
+    @include direction-row;
+    background: $white-light;
+    border-radius: 5px;
+    align-items: start;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover{
+      background: $white-medium;
+    }
+    &:active{
+      background: $white-dark;
+      transform: scale(0.995);
+    }
+    img {
+      border-radius: 0 5px 5px 0;
+    }
+    &__header {
+      width: 100%;
+      height: 60%;
+      padding: 8px;
+      @include direction-row;
+      flex-wrap: wrap;
+      gap: 70px 0;
+    }
+    &__numbers-wrapper {
+      width: 100%;
+      @include direction-row;
+      align-items: start;
+    }
+    &__number {
+      font-family: $lato;
+      font-size: 50px;
+    }
+    &__score {
+      font-size: 12px;
+    }
+    &__title {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and(min-width:768px) {
+  .categories{
+    justify-content: flex-start;
+    gap: 50px 0;
+    &__content{
+      @include direction-row;
+      flex-wrap: wrap
+      gap 20px ;
+    }
+    &__card{
+      @include direction-column;
+      width: calc(20% - 10px);
+      img{
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+      }
+    }
+  }
+
+}
