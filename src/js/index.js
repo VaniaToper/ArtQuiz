@@ -11,6 +11,7 @@ const pictureButton = document.querySelector('.picture');
 const hideBlocks = document.querySelectorAll('.hide__block');
 const currentSection = document.querySelector('.current-section');
 const currentUnHideBlock = localStorage.getItem('currentHideBlock');
+const categoriesCard = document.querySelectorAll('.categories__card');
 
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
@@ -21,7 +22,8 @@ const switchPage = (block = welcomeSection) => {
   if (welcomeSection.classList.contains('hide')) {
     homeButton.classList.remove('hide');
   }
-  blockContent = block.outerHTML;
+  block.classList.add('changePage');
+
   localStorage.setItem('currentHideBlock', block.classList[0]);
 };
 switchPage(document.querySelector(`.${currentUnHideBlock}`));
@@ -34,6 +36,15 @@ homeButton.addEventListener('click', () => {
 });
 artistButton.addEventListener('click', () => {
   switchPage(artistsCategoriesSection);
+  let k = -1;
+  const animCardInterval = setInterval(() => {
+    if (k < 11) {
+      k++;
+      categoriesCard[k].classList.add('changePage');
+    } else {
+      clearInterval(animCardInterval);
+    }
+  }, 200);
 });
 pictureButton.addEventListener('click', () => {
   switchPage(pictureCategoriesSection);

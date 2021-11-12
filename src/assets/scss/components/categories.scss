@@ -5,9 +5,13 @@
     width: 100%;
     @include direction-column;
     gap: 15px 0;
+    flex-wrap: wrap;
     padding-bottom: 10px;
   }
   &__card {
+    // opacity: 0;
+    opacity: 1;
+    transform: translateX(0%) scale(1);
     width: 100%;
     @include direction-row;
     background: $white-light;
@@ -15,10 +19,10 @@
     align-items: start;
     cursor: pointer;
     transition: 0.2s;
-    &:hover{
+    &:hover {
       background: $white-medium;
     }
-    &:active{
+    &:active {
       background: $white-dark;
       transform: scale(0.995);
     }
@@ -51,23 +55,23 @@
   }
 }
 
+
+
 @media screen and(min-width:768px) {
-  .categories{
+  .categories {
     justify-content: flex-start;
-    gap: 50px 0;
-    &__content{
+    gap: 30px 0;
+    &__content {
       @include direction-row;
-      flex-wrap: wrap
-      gap 20px ;
+      flex-wrap: wrap gap 20px;
     }
-    &__card{
+    &__card {
       @include direction-column;
       width: calc(20% - 10px);
-      img{
+      img {
         width: 100%;
         border-radius: 0 0 5px 5px;
       }
     }
   }
-
 }

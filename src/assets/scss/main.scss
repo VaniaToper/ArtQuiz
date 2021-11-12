@@ -3,7 +3,7 @@
 @import "utils/mixins";
 @import "utils/fonts";
 @import "utils/reset";
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@200;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@200;400;500;600;700&display=swap");
 * {
   font-family: $poppins;
 }
@@ -12,6 +12,7 @@ body {
   align-items: center;
 }
 .art {
+  overflow-x: hidden;
   @include direction-column();
   width: calc(100vw - 20px);
   height: calc(100vh - 20px);
@@ -96,7 +97,7 @@ body {
   }
 }
 
-.hide{
+.hide {
   display: none !important;
 }
 
@@ -137,6 +138,60 @@ body {
 @import "components/categories.scss";
 @import "components/questions.scss";
 
-@keyframes changeImg {
-  
+.changePage {
+  animation: changePageAnim 0.5s ease-in-out;
+}
+.infoShowAnim {
+  animation: infoShowAnim 0.3s forwards ease-in-out;
+}
+.infoHideAnim {
+  animation: infoHideAnim 0.3s forwards ease-in-out;
+}
+.changePhotoAnim {
+  animation: changePhotoAnim 0.3s forwards ease-in-out;
+}
+@keyframes changePageAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  50% {
+    transform: translateX(0%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%) scale(1);
+  }
+}
+@keyframes infoShowAnim {
+  0% {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+}
+@keyframes infoHideAnim {
+  0% {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+}
+@keyframes changePhotoAnim {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
 }
