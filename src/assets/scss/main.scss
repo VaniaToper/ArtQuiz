@@ -27,6 +27,19 @@ body {
     height: 100%;
     justify-content: space-between;
   }
+  &__modal {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    width: calc(100% - 20px);
+    max-height: 450px;
+    padding: 7px;
+    background: white;
+    border-radius: 5px;
+    gap: 10px 0;
+    @include direction-column;
+    box-shadow: 0px 0px 5px 0.5px rgba(39, 39, 39, 0.465);
+  }
   &__header {
     position: relative;
     width: 100%;
@@ -100,7 +113,14 @@ body {
 .hide {
   display: none !important;
 }
-
+@media screen and(min-width: 768px) {
+  .art {
+    &__modal {
+      max-height: 700px;
+      width: 70%;
+    }
+  }
+}
 @media screen and(min-width: 1024px) {
   .art {
     &__title {
@@ -133,36 +153,41 @@ body {
     }
   }
 }
+@media screen and(min-width: 1440px) {
+  .art {
+    &__modal {
+      padding: 25px;
+      width: 40%;
+    }
+  }
+}
 @import "components/welcome.scss";
 @import "components/settings.scss";
 @import "components/categories.scss";
-@import "components/questions.scss";
+@import "components/artists-questions.scss";
+@import "components/picture-questions.scss";
 
-.changePage {
-  animation: changePageAnim 0.5s ease-in-out;
-}
-.infoShowAnim {
-  animation: infoShowAnim 0.3s forwards ease-in-out;
-}
-.infoHideAnim {
-  animation: infoHideAnim 0.3s forwards ease-in-out;
-}
-.changePhotoAnim {
-  animation: changePhotoAnim 0.3s forwards ease-in-out;
-}
 @keyframes changePageAnim {
   0% {
     opacity: 0;
+    -webkit-transform: translateX(100%) scale(0.95);
     transform: translateX(100%) scale(0.95);
   }
   50% {
+    -webkit-transform: translateX(0%) scale(0.9);
     transform: translateX(0%) scale(0.9);
   }
   100% {
     opacity: 1;
+    -webkit-transform: translateX(0%) scale(1);
     transform: translateX(0%) scale(1);
   }
 }
+.changePage {
+  -webkit-animation: changePageAnim 0.5s ease-in-out;
+  animation: changePageAnim 0.5s ease-in-out;
+}
+
 @keyframes infoShowAnim {
   0% {
     display: none;
@@ -175,6 +200,11 @@ body {
     transform: translate(-50%, 0%);
   }
 }
+.infoShowAnim {
+  display: flex;
+  animation: infoShowAnim 0.3s forwards ease-in-out;
+}
+
 @keyframes infoHideAnim {
   0% {
     display: flex;
@@ -187,11 +217,64 @@ body {
     transform: translate(-50%, 100%);
   }
 }
+.infoHideAnim {
+  display: none;
+  animation: infoHideAnim 0.3s forwards ease-in-out;
+}
+
 @keyframes changePhotoAnim {
-  0%{
+  0% {
     transform: translateX(-100%);
   }
-  100%{
+  100% {
     transform: translateX(0%);
   }
+}
+.changePhotoAnim {
+  animation: changePhotoAnim 0.3s forwards ease-in-out;
+}
+@-webkit-keyframes congratsShowAnim {
+  0% {
+    display: none;
+    -webkit-transform: translate(-50%, 0%) scaleY(0.2);
+    transform: translate(-50%, 0%) scaleY(0.2);
+  }
+  100% {
+    display: flex;
+    -webkit-transform: translate(-50%, 0%) scaleY(1);
+    transform: translate(-50%, 0%) scaleY(1);
+  }
+}
+@keyframes congratsShowAnim {
+  0% {
+    display: none;
+    -webkit-transform: translate(-50%, 0%) scaleY(0.2);
+    transform: translate(-50%, 0%) scaleY(0.2);
+  }
+  100% {
+    display: flex;
+    -webkit-transform: translate(-50%, 0%) scaleY(1);
+    transform: translate(-50%, 0%) scaleY(1);
+  }
+}
+
+.congratsShowAnim {
+  -webkit-animation: congratsShowAnim 0.4s forwards cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation: congratsShowAnim 0.4s forwards cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+}
+
+@keyframes opacityAnim {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 0.5;
+  }
+}
+
+.congratsBgShowAnim{
+  animation: opacityAnim 0.2s ease-in forwards;
+  opacity: 0.5;
+  display: block;
 }

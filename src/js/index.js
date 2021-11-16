@@ -3,15 +3,17 @@ const settingsSection = document.querySelector('.settings');
 const artistsCategoriesSection = document.querySelector('.artists__categories');
 const pictureCategoriesSection = document.querySelector('.picture__categories');
 const artistsQuestionsSection = document.querySelector('.artists__questions');
+const pictureQuestionsSection = document.querySelector('.picture__questions');
 const settingsButton = document.querySelector('.welcome__button');
-const cardButton = document.querySelectorAll('.categories__card');
 const homeButton = document.querySelector('.art__home');
 const artistButton = document.querySelector('.artist');
 const pictureButton = document.querySelector('.picture');
 const hideBlocks = document.querySelectorAll('.hide__block');
 const currentSection = document.querySelector('.current-section');
+const congratulationButton = document.querySelector('.congratulation__button');
 const currentUnHideBlock = localStorage.getItem('currentHideBlock');
-const categoriesCard = document.querySelectorAll('.categories__card');
+const artistsCategoriesCard = document.querySelectorAll('.artists__card');
+const pictureCategoriesCard = document.querySelectorAll('.picture__card');
 
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
@@ -40,7 +42,7 @@ artistButton.addEventListener('click', () => {
   const animCardInterval = setInterval(() => {
     if (k < 11) {
       k++;
-      categoriesCard[k].classList.add('changePage');
+      artistsCategoriesCard[k].classList.add('changePage');
     } else {
       clearInterval(animCardInterval);
     }
@@ -49,9 +51,19 @@ artistButton.addEventListener('click', () => {
 pictureButton.addEventListener('click', () => {
   switchPage(pictureCategoriesSection);
 });
-
-for (let i = 0; i < cardButton.length; i++) {
-  cardButton[i].addEventListener('click', () => {
+congratulationButton.addEventListener('click', () => {
+  switchPage(artistsCategoriesSection);
+});
+artistsCategoriesSection.addEventListener('click', (e) => {
+  let targetItem = e.target;
+  if (targetItem.closest('.artists__card')) {
     switchPage(artistsQuestionsSection);
-  });
-}
+  }
+});
+
+pictureCategoriesSection.addEventListener('click', (e) => {
+  let targetItem = e.target;
+  if (targetItem.closest('.picture__card')) {
+    switchPage(pictureQuestionsSection);
+  }
+});

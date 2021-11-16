@@ -1,0 +1,43 @@
+.questions {
+  &__content {
+    gap: 10px 0;
+  }
+  &__images {
+    @include direction-row;
+    flex-wrap: wrap;
+    width: 100%;
+    img {
+      width: calc(50% - 2px);
+      height: calc(50% - 2px);
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.9;
+      }
+      &:active {
+        opacity: 0.8;
+        transform: scale(0.992);
+      }
+    }
+  }
+}
+@media screen and(min-width: 768px) {
+  .questions {
+    &__images {
+      width: 70%;
+    }
+    &__content {
+      gap: 15px 0;
+    }
+  }
+}
+@media screen and(min-width:1440px) {
+  .questions {
+    &__images {
+      width: 50%;
+    }
+    &__content {
+      gap: 20px 0;
+    }
+  }
+}
