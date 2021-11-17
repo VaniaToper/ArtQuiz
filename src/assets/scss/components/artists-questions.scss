@@ -9,7 +9,7 @@
     border-radius: 3px;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.67);
   }
-  &__choices {
+  &__button-choices {
     @include direction-row;
     flex-wrap: wrap;
     width: 60%;
@@ -52,6 +52,7 @@
 }
 
 .picture-info {
+  z-index: 2;
   bottom: 0;
   transform: translate(-50%, 200%);
   gap: 10px 0;

@@ -41,7 +41,6 @@ body {
     box-shadow: 0px 0px 5px 0.5px rgba(39, 39, 39, 0.465);
   }
   &__header {
-    position: relative;
     width: 100%;
     text-align: center;
     font-size: 30px;
@@ -51,22 +50,41 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #000;
-    }
+
     &__text {
-      width: 80px;
+      display: block;
+      position: relative;
+      width: 100%;
       background-image: url("../img/quiz.png");
       background-repeat: no-repeat;
       background-position: bottom center;
       background-size: 80px;
       padding-bottom: 53px;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #000;
+      }
+    }
+    &__nav{
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+      height: 50px;
+      width: 100%;
+      border: 1px solid rgba(192, 192, 192, 0.5);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      background: $white-light;
+      padding: 5px;
+      @include direction-row;
+      button{
+        background: none;
+      }
     }
   }
   &__button {
@@ -105,9 +123,7 @@ body {
       transform: scale(0.96);
     }
   }
-  &__home {
-    width: 100px;
-  }
+
 }
 
 .hide {

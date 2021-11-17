@@ -14,16 +14,17 @@ const congratulationButton = document.querySelector('.congratulation__button');
 const currentUnHideBlock = localStorage.getItem('currentHideBlock');
 const artistsCategoriesCard = document.querySelectorAll('.artists__card');
 const pictureCategoriesCard = document.querySelectorAll('.picture__card');
-
+const congratulation = document.querySelector('.congratulation');
+const congratulationBg = document.querySelector('.congratulation__bg');
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
   for (let i = 0; i < hideBlocks.length; i++) {
     hideBlocks[i].classList.add('hide');
   }
   block.classList.remove('hide');
-  if (welcomeSection.classList.contains('hide')) {
-    homeButton.classList.remove('hide');
-  }
+  // if (welcomeSection.classList.contains('hide')) {
+  //   homeButton.classList.remove('hide');
+  // }
   block.classList.add('changePage');
 
   localStorage.setItem('currentHideBlock', block.classList[0]);
@@ -53,6 +54,8 @@ pictureButton.addEventListener('click', () => {
 });
 congratulationButton.addEventListener('click', () => {
   switchPage(artistsCategoriesSection);
+  congratulation.classList.remove('congratsShowAnim');
+  congratulationBg.classList.remove('congratsBgShowAnim');
 });
 artistsCategoriesSection.addEventListener('click', (e) => {
   let targetItem = e.target;

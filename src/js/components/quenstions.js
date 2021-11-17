@@ -6,8 +6,7 @@ const pictureInfo = document.querySelector('.picture-info');
 const pictureInfoName = document.querySelector('.picture-info__name');
 const pictureInfoAuthor = document.querySelector('.picture-info__author');
 const pictureInfoYear = document.querySelector('.picture-info__year');
-const questionsChoices = document.querySelector('.questions__choices');
-const questionsImgChoices = document.querySelector('.questions__images');
+const questionsChoices = document.querySelectorAll('.questions__choices');
 const congratulation = document.querySelector('.congratulation');
 const congratulationBg = document.querySelector('.congratulation__bg');
 const pictureAuthor = document.querySelector('.author');
@@ -23,6 +22,7 @@ let questionsObject = {
   currentAnswer: 0,
   score: 0,
   imgAnswer: 0,
+  currentCategory: 0,
 };
 
 function setLocalStorage(obj) {
@@ -33,10 +33,10 @@ function setLocalStorage(obj) {
   for (let k = 0; k < score.length; k++) {
     localStorage.setItem(`score${k}`, score[k].innerHTML);
   }
-  localStorage.setItem('question', answer);
-  localStorage.setItem('card', currentCard);
+  localStorage.setItem('imgAnswer', questionsObject.imgAnswer);
+  localStorage.setItem('currentQuestion', questionsObject.currentAnswer);
+  localStorage.setItem('card', questionsObject.currentCard);
 }
-// localStorage.clear()
 window.addEventListener('beforeunload', () => {
   setLocalStorage(questionsObject);
 });
@@ -53,12 +53,37 @@ function getLocalStorage(obj) {
     }
   }
   let { currentCard, answer } = obj;
-  answer = localStorage.getItem('question');
-  currentCard = localStorage.getItem('card');
+  questionsObject.answer = localStorage.getItem('currentQuestion');
+  questionsObject.currentCard = localStorage.getItem('card');
+  questionsObject.currentAnswer = localStorage.getItem('currentQuestion');
+  questionsObject.imgAnswer = localStorage.getItem('imgAnswer');
 }
+
 window.addEventListener('load', () => {
   getLocalStorage(questionsObject);
+  setButtonContent(questionsObject);
+  getCategory(questionsObject);
+  setPictureInfoContent(questionsObject);
 });
+
+const checkForSameContent = () => {
+  let arrButton = [];
+  if (questionsObject.currentCategory == 0) {
+    questionsButton.forEach((button) => {
+      arrButton.push(button.innerHTML);
+    });
+  } else {
+    questionsImgButton.forEach(button=>{
+      arrButton.push(button.src)
+    })
+  }
+  arrButton = arrButton.filter(function (value, index, array) {
+    return array.indexOf(value) === index;
+  });
+  if (arrButton.length <= 3) {
+    setButtonContent(questionsObject);
+  }
+};
 
 const setButtonContent = (obj) => {
   let { answer, currentCard } = obj;
@@ -68,22 +93,31 @@ const setButtonContent = (obj) => {
       questionsImgButton[
         k
       ].src = `assets/img/img/${images[randomAuthor].imageNum}.jpg`;
+      pictureAuthor.innerHTML = images[questionsObject.answer].author;
     } else {
+      questionsImage.src = `assets/img/img/${
+        images[questionsObject.answer].imageNum
+      }.jpg`;
       questionsButton[k].innerHTML = images[randomAuthor].author;
     }
   }
   let randomButton = getRandomInt(4);
   if (currentCard >= 12) {
-    questionsObject.imgAnswer = randomButton
-    // перевірка на яку кнопку нажали
+    questionsObject.imgAnswer = randomButton;
     questionsImgButton[
       randomButton
     ].src = `assets/img/img/${images[answer].imageNum}.jpg`;
   } else {
     questionsButton[randomButton].innerHTML = images[answer].author;
   }
+  checkForSameContent();
+  setPictureInfoContent(questionsObject);
 };
-const getCategory = () => {};
+const getCategory = (obj) => {
+  if (obj.currentCard >= 12) {
+    obj.currentCategory = 1;
+  } else obj.currentCategory = 0;
+};
 
 const putImgToCategories = (obj) => {
   for (let i = 0; i < categoriesCard.length; i++) {
@@ -93,42 +127,39 @@ const putImgToCategories = (obj) => {
       obj.answer = i * 10;
       obj.score = 0;
       score[currentCard].innerHTML = obj.score;
-      questionsImage.src = `assets/img/img/${
-        images[questionsObject.answer].imageNum
-      }.jpg`;
-      pictureAuthor.innerHTML = images[questionsObject.answer].author;
-      pictureInfoImage.src = questionsImage.src;
-      pictureInfoName.innerHTML = images[i * 10].name;
-      pictureInfoAuthor.innerHTML = images[i * 10].author;
-      pictureInfoYear.innerHTML = images[i * 10].year;
       obj.currentAnswer = obj.answer;
+      setPictureInfoContent(questionsObject);
       setButtonContent(questionsObject);
-      congratulation.classList.remove('congratsShowAnim');
-      congratulationBg.classList.remove('congratsBgShowAnim');
+      getCategory(questionsObject);
     });
   }
 };
 putImgToCategories(questionsObject);
-setButtonContent(questionsObject);
+
+const setPictureInfoContent = (obj) => {
+  let { answer } = obj;
+  pictureInfoImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
+  pictureInfoName.innerHTML = images[answer].name;
+  pictureInfoAuthor.innerHTML = images[answer].author;
+  pictureInfoYear.innerHTML = images[answer].year;
+};
 
 const changeQuestion = (obj) => {
   let { answer, currentAnswer } = obj;
-  if (answer == currentAnswer + 10) {
+  if (answer == parseInt(currentAnswer) + 10) {
     congratulation.classList.add('congratsShowAnim');
     congratulationBg.classList.add('congratsBgShowAnim');
     return;
   }
+  pictureAuthor.innerHTML = images[questionsObject.answer].author;
   questionsImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
-  pictureInfoImage.src = questionsImage.src;
-  pictureInfoName.innerHTML = images[answer].name;
-  pictureInfoAuthor.innerHTML = images[answer].author;
-  pictureInfoYear.innerHTML = images[answer].year;
+  setPictureInfoContent(questionsObject);
 
   return questionsObject.answer;
 };
 changeQuestion(questionsObject);
 
-questionsChoices.addEventListener('mousedown', (e) => {
+questionsChoices[0].addEventListener('mousedown', (e) => {
   let { answer, currentCard } = questionsObject;
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
@@ -145,39 +176,47 @@ questionsChoices.addEventListener('mousedown', (e) => {
     }
   }
 });
-questionsChoices.addEventListener('mouseup', (e) => {
+questionsChoices[0].addEventListener('mouseup', (e) => {
+  let { currentCategory } = questionsObject;
   pictureInfo.classList.remove('infoHideAnim');
   pictureInfo.classList.add('infoShowAnim');
+  congratulationBg.classList.add('congratsBgShowAnim');
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
     targetItem.style.background = '#f7f7f7';
     targetItem.style.color = 'black';
   }
 });
-const getScore = (obj) => {
-  let { currentCard } = obj;
-  questionsObject.score += 1;
-};
 
 document.addEventListener('click', (event) => {
-  let { answer, currentCard } = questionsObject;
-  let e = pictureInfo;
-  let i = questionsChoices;
+  let { answer, currentCard, currentCategory } = questionsObject;
   if (
-    !e.contains(event.target) &&
-    !i.contains(event.target) &&
+    congratulationBg.contains(event.target) &&
     pictureInfo.classList.contains('infoShowAnim')
   ) {
     questionsObject.answer++;
     pictureInfo.classList.remove('infoShowAnim');
+    congratulationBg.classList.remove('congratsBgShowAnim');
     pictureInfo.classList.add('infoHideAnim');
     setButtonContent(questionsObject);
     changeQuestion(questionsObject);
   }
 });
 
-questionsImgChoices.addEventListener('click', (e) => {
+questionsChoices[1].addEventListener('click', (e) => {
+  let { currentCategory } = questionsObject;
+  pictureInfo.classList.remove('infoHideAnim');
+  pictureInfo.classList.add('infoShowAnim');
+  congratulationBg.classList.add('congratsBgShowAnim');
   let targetItem = e.target;
   if (targetItem.closest('.questions__img')) {
+    if (
+      questionsImgButton[questionsObject.imgAnswer] ==
+      targetItem.closest('.questions__img')
+    ) {
+      questionsObject.score += 1;
+      score[questionsObject.currentCard].innerHTML = questionsObject.score;
+      console.log(questionsObject.score);
+    }
   }
 });
