@@ -6,6 +6,8 @@ const artistsQuestionsSection = document.querySelector('.artists__questions');
 const pictureQuestionsSection = document.querySelector('.picture__questions');
 const settingsButton = document.querySelector('.welcome__button');
 const homeButton = document.querySelector('.art__home');
+const scoreButton = document.querySelector('.art__score');
+const categoryButton = document.querySelector('.art__category');
 const artistButton = document.querySelector('.artist');
 const pictureButton = document.querySelector('.picture');
 const hideBlocks = document.querySelectorAll('.hide__block');
@@ -16,17 +18,14 @@ const artistsCategoriesCard = document.querySelectorAll('.artists__card');
 const pictureCategoriesCard = document.querySelectorAll('.picture__card');
 const congratulation = document.querySelector('.congratulation');
 const congratulationBg = document.querySelector('.congratulation__bg');
+const scoreSection = document.querySelector('.score__section')
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
   for (let i = 0; i < hideBlocks.length; i++) {
     hideBlocks[i].classList.add('hide');
   }
   block.classList.remove('hide');
-  // if (welcomeSection.classList.contains('hide')) {
-  //   homeButton.classList.remove('hide');
-  // }
   block.classList.add('changePage');
-
   localStorage.setItem('currentHideBlock', block.classList[0]);
 };
 switchPage(document.querySelector(`.${currentUnHideBlock}`));
@@ -70,3 +69,11 @@ pictureCategoriesSection.addEventListener('click', (e) => {
     switchPage(pictureQuestionsSection);
   }
 });
+
+categoryButton.addEventListener('click',()=>{
+  switchPage(artistsCategoriesSection)
+})
+
+scoreButton.addEventListener('click',()=>{
+  switchPage(scoreSection)
+})

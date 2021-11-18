@@ -26,6 +26,7 @@ body {
     width: 100%;
     height: 100%;
     justify-content: space-between;
+    margin-bottom: 50px !important;
   }
   &__modal {
     position: absolute;
@@ -40,53 +41,7 @@ body {
     @include direction-column;
     box-shadow: 0px 0px 5px 0.5px rgba(39, 39, 39, 0.465);
   }
-  &__header {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    line-height: 25px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    &__text {
-      display: block;
-      position: relative;
-      width: 100%;
-      background-image: url("../img/quiz.png");
-      background-repeat: no-repeat;
-      background-position: bottom center;
-      background-size: 80px;
-      padding-bottom: 53px;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: #000;
-      }
-    }
-    &__nav{
-      position: absolute;
-      bottom: 0;
-      z-index: 1;
-      height: 50px;
-      width: 100%;
-      border: 1px solid rgba(192, 192, 192, 0.5);
-      border-bottom: none;
-      border-radius: 10px 10px 0 0;
-      background: $white-light;
-      padding: 5px;
-      @include direction-row;
-      button{
-        background: none;
-      }
-    }
-  }
+  
   &__button {
     background: $red;
     border: 1.6px solid $red;
@@ -123,7 +78,6 @@ body {
       transform: scale(0.96);
     }
   }
-
 }
 
 .hide {
@@ -177,9 +131,11 @@ body {
     }
   }
 }
+@import "components/header.scss";
 @import "components/welcome.scss";
 @import "components/settings.scss";
 @import "components/categories.scss";
+@import "components/score.scss";
 @import "components/artists-questions.scss";
 @import "components/picture-questions.scss";
 
@@ -281,15 +237,15 @@ body {
 }
 
 @keyframes opacityAnim {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 0.5;
   }
 }
 
-.congratsBgShowAnim{
+.congratsBgShowAnim {
   animation: opacityAnim 0.2s ease-in forwards;
   opacity: 0.5;
   display: block;
