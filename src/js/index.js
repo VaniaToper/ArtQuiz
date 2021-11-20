@@ -19,6 +19,9 @@ const pictureCategoriesCard = document.querySelectorAll('.picture__card');
 const congratulation = document.querySelector('.congratulation');
 const congratulationBg = document.querySelector('.congratulation__bg');
 const scoreSection = document.querySelector('.score__section')
+const scoreContainer = document.querySelector('.score__container');
+const scoreQuestionsSection = document.querySelector('.score-questions__section');
+
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
   for (let i = 0; i < hideBlocks.length; i++) {
@@ -77,3 +80,10 @@ categoryButton.addEventListener('click',()=>{
 scoreButton.addEventListener('click',()=>{
   switchPage(scoreSection)
 })
+
+scoreContainer.addEventListener('click', (e) => {
+  let targetItem = e.target;
+  if (targetItem.closest('.score__image')) {
+    switchPage(scoreQuestionsSection);
+  }
+});

@@ -16,7 +16,7 @@ const score = document.querySelectorAll('.score');
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 };
-let questionsObject = {
+export let questionsObject = {
   currentCard: 0,
   answer: 0,
   currentAnswer: 0,
@@ -119,9 +119,9 @@ const getCategory = (obj) => {
   } else obj.currentCategory = 0;
 };
 
-const putImgToCategories = (obj) => {
-  for (let i = 0; i < categoriesCard.length; i++) {
-    categoriesCard[i].addEventListener('click', () => {
+export const putImgToCategories = (obj, cards) => {
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', () => {
       let { currentCard, answer, currentAnswer } = obj;
       obj.currentCard = i;
       obj.answer = i * 10;
@@ -134,9 +134,9 @@ const putImgToCategories = (obj) => {
     });
   }
 };
-putImgToCategories(questionsObject);
+putImgToCategories(questionsObject, categoriesCard);
 
-const setPictureInfoContent = (obj) => {
+export const setPictureInfoContent = (obj) => {
   let { answer } = obj;
   pictureInfoImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
   pictureInfoName.innerHTML = images[answer].name;
@@ -166,8 +166,10 @@ questionsChoices[0].addEventListener('mousedown', (e) => {
     if (targetItem.innerHTML != images[answer].author) {
       targetItem.style.background = '#B40A1B';
       targetItem.style.color = 'white';
+      images[answer].isTrue = false
       return;
     } else if (targetItem.innerHTML == images[answer].author) {
+      images[answer].isTrue = true
       targetItem.style.background = '#4BB462';
       targetItem.style.color = 'white';
       questionsObject.score += 1;
@@ -188,20 +190,23 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
   }
 });
 
-document.addEventListener('click', (event) => {
-  let { answer, currentCard, currentCategory } = questionsObject;
-  if (
-    congratulationBg.contains(event.target) &&
-    pictureInfo.classList.contains('infoShowAnim')
-  ) {
-    questionsObject.answer++;
-    pictureInfo.classList.remove('infoShowAnim');
-    congratulationBg.classList.remove('congratsBgShowAnim');
-    pictureInfo.classList.add('infoHideAnim');
-    setButtonContent(questionsObject);
-    changeQuestion(questionsObject);
-  }
-});
+export const hidePictureInfo = ()=>{
+  document.addEventListener('click', (event) => {
+    let { answer, currentCard, currentCategory } = questionsObject;
+    if (
+      congratulationBg.contains(event.target) &&
+      pictureInfo.classList.contains('infoShowAnim')
+    ) {
+      questionsObject.answer++;
+      pictureInfo.classList.remove('infoShowAnim');
+      congratulationBg.classList.remove('congratsBgShowAnim');
+      pictureInfo.classList.add('infoHideAnim');
+      setButtonContent(questionsObject);
+      changeQuestion(questionsObject);
+    }
+  });
+}
+hidePictureInfo()
 
 questionsChoices[1].addEventListener('click', (e) => {
   let { currentCategory } = questionsObject;

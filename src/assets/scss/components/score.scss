@@ -7,18 +7,28 @@
     @include direction-row;
     flex-wrap: wrap;
     gap: 10px 0;
-    img{
-      border-radius: 10px;
-      width: calc(50% - 5px);
-      height: auto;
-      cursor: pointer;
-      &:hover{
 
-      }
+  }
+  &__image{
+    border-radius: 10px;
+    width: calc(50% - 5px);
+    height: auto;
+    cursor: pointer;
+    &:hover{
+
     }
   }
 }
-
+.score__questions-images{
+  border-radius: 10px;
+  width: calc(50% - 5px);
+  height: auto;
+  cursor: pointer;
+  filter: grayscale(100%); 
+  &__true{
+    filter: grayscale(0%); 
+  }
+}
 @media screen and(min-width:768px) {
   .score__container{
     img{
