@@ -15,11 +15,21 @@ const scoreQuestionsSection = document.querySelector(
 );
 const pictureInfo = document.querySelector('.picture-info');
 const congratulationBg = document.querySelector('.congratulation__bg');
-
 const scoreObject = {
   answer: 0,
 };
-
+const setLocalStorage = () => {
+  localStorage.setItem('scoreQuestions', scoreQuestionsContainer.innerHTML);
+};
+window.addEventListener('beforeunload', () => {
+  setLocalStorage(questionsObject);
+});
+const getLocalStorage = () => {
+  scoreQuestionsContainer.innerHTML = localStorage.getItem('scoreQuestions');
+};
+window.addEventListener('load', () => {
+  getLocalStorage();
+});
 putImgToCategories(questionsObject, scoreImage);
 scoreImage.forEach((card) => {
   card.addEventListener('click', () => {
@@ -30,7 +40,10 @@ scoreImage.forEach((card) => {
 const createImg = (obj) => {
   scoreQuestionsContainer.innerHTML = '';
   let { answer } = obj;
+  console.log(scoreObject.answer);
+
   for (let i = answer; i < answer + 10; i++) {
+    console.log(scoreObject.answer);
     scoreObject.answer = i;
     const questionsImage = document.createElement('img');
     questionsImage.classList = 'score__questions-images';
@@ -43,7 +56,6 @@ const createImg = (obj) => {
     scoreQuestionsContainer.append(questionsImage);
   }
 };
-
 const showPictureInfo = () => {
   scoreQuestionsContainer.addEventListener('click', (e) => {
     console.log(scoreObject.answer);
@@ -58,4 +70,4 @@ const showPictureInfo = () => {
   });
 };
 showPictureInfo();
-hidePictureInfo();
+// hidePictureInfo();

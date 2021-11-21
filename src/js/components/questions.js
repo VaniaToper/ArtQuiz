@@ -8,8 +8,11 @@ const pictureInfoAuthor = document.querySelector('.picture-info__author');
 const pictureInfoYear = document.querySelector('.picture-info__year');
 const questionsChoices = document.querySelectorAll('.questions__choices');
 const congratulation = document.querySelector('.congratulation');
+const congratulationScore = document.querySelector('.congratulation__score');
 const congratulationBg = document.querySelector('.congratulation__bg');
 const pictureAuthor = document.querySelector('.author');
+const pictureInfoButton = document.querySelector('.picture-info__button');
+const pictureInfoIndicator = document.querySelector('.picture-info__indicator');
 const questionsButton = document.querySelectorAll('.questions__button');
 const questionsImgButton = document.querySelectorAll('.questions__img');
 const score = document.querySelectorAll('.score');
@@ -73,9 +76,9 @@ const checkForSameContent = () => {
       arrButton.push(button.innerHTML);
     });
   } else {
-    questionsImgButton.forEach(button=>{
-      arrButton.push(button.src)
-    })
+    questionsImgButton.forEach((button) => {
+      arrButton.push(button.src);
+    });
   }
   arrButton = arrButton.filter(function (value, index, array) {
     return array.indexOf(value) === index;
@@ -145,8 +148,9 @@ export const setPictureInfoContent = (obj) => {
 };
 
 const changeQuestion = (obj) => {
-  let { answer, currentAnswer } = obj;
+  let { answer, currentAnswer, score } = obj;
   if (answer == parseInt(currentAnswer) + 10) {
+    congratulationScore.innerHTML = score + '/10';
     congratulation.classList.add('congratsShowAnim');
     congratulationBg.classList.add('congratsBgShowAnim');
     return;
@@ -164,12 +168,16 @@ questionsChoices[0].addEventListener('mousedown', (e) => {
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
     if (targetItem.innerHTML != images[answer].author) {
+      pictureInfoIndicator.classList.remove('true');
+      pictureInfoIndicator.classList.add('false');
       targetItem.style.background = '#B40A1B';
       targetItem.style.color = 'white';
-      images[answer].isTrue = false
+      images[answer].isTrue = false;
       return;
     } else if (targetItem.innerHTML == images[answer].author) {
-      images[answer].isTrue = true
+      pictureInfoIndicator.classList.remove('false');
+      pictureInfoIndicator.classList.add('true');
+      images[answer].isTrue = true;
       targetItem.style.background = '#4BB462';
       targetItem.style.color = 'white';
       questionsObject.score += 1;
@@ -182,6 +190,10 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
   let { currentCategory } = questionsObject;
   pictureInfo.classList.remove('infoHideAnim');
   pictureInfo.classList.add('infoShowAnim');
+  questionsImage.classList.remove('showQuestions');
+  questionsImage.classList.remove('hideQuestions');
+  questionsImage.classList.add('hideQuestions');
+
   congratulationBg.classList.add('congratsBgShowAnim');
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
@@ -189,25 +201,35 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
     targetItem.style.color = 'black';
   }
 });
-
-export const hidePictureInfo = ()=>{
+const setPictureInfoBg = () => {
+  if (images[answer].isTrue == true) {
+    pictureInfoIndicator.backgroundImage = 'url("../img/checked.png")';
+  } else {
+    pictureInfoIndicator.backgroundImage = 'none';
+  }
+};
+export const hidePictureInfo = () => {
   document.addEventListener('click', (event) => {
     let { answer, currentCard, currentCategory } = questionsObject;
     if (
-      congratulationBg.contains(event.target) &&
-      pictureInfo.classList.contains('infoShowAnim')
+      congratulationBg.contains(event.target) ||
+      (pictureInfoButton.contains(event.target) &&
+        pictureInfo.classList.contains('infoShowAnim'))
     ) {
       questionsObject.answer++;
       pictureInfo.classList.remove('infoShowAnim');
       congratulationBg.classList.remove('congratsBgShowAnim');
-      pictureInfo.classList.add('infoHideAnim');
       setButtonContent(questionsObject);
+      pictureInfo.classList.add('infoHideAnim');
       changeQuestion(questionsObject);
+      questionsImage.classList.remove('hideQuestions');
+      questionsImage.classList.remove('showQuestions');
+      questionsImage.classList.add('showQuestions');
+      console.log(questionsImage.classList);
     }
   });
-}
-hidePictureInfo()
-
+};
+hidePictureInfo();
 questionsChoices[1].addEventListener('click', (e) => {
   let { currentCategory } = questionsObject;
   pictureInfo.classList.remove('infoHideAnim');
@@ -219,9 +241,16 @@ questionsChoices[1].addEventListener('click', (e) => {
       questionsImgButton[questionsObject.imgAnswer] ==
       targetItem.closest('.questions__img')
     ) {
+      pictureInfoIndicator.classList.remove('false');
+      pictureInfoIndicator.classList.add('true');
+      images[answer].isTrue = true;
       questionsObject.score += 1;
       score[questionsObject.currentCard].innerHTML = questionsObject.score;
       console.log(questionsObject.score);
+    } else {
+      pictureInfoIndicator.classList.remove('true');
+      pictureInfoIndicator.classList.add('false');
+      images[answer].isTrue = false;
     }
   }
 });

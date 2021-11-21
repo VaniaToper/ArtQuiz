@@ -4,32 +4,86 @@ const artistsCategoriesSection = document.querySelector('.artists__categories');
 const pictureCategoriesSection = document.querySelector('.picture__categories');
 const artistsQuestionsSection = document.querySelector('.artists__questions');
 const pictureQuestionsSection = document.querySelector('.picture__questions');
-const settingsButton = document.querySelector('.welcome__button');
+const settingsButton = document.querySelector('.art__header__settings');
 const homeButton = document.querySelector('.art__home');
 const scoreButton = document.querySelector('.art__score');
 const categoryButton = document.querySelector('.art__category');
 const artistButton = document.querySelector('.artist');
 const pictureButton = document.querySelector('.picture');
 const hideBlocks = document.querySelectorAll('.hide__block');
-const currentSection = document.querySelector('.current-section');
 const congratulationButton = document.querySelector('.congratulation__button');
-const currentUnHideBlock = localStorage.getItem('currentHideBlock');
 const artistsCategoriesCard = document.querySelectorAll('.artists__card');
 const pictureCategoriesCard = document.querySelectorAll('.picture__card');
 const congratulation = document.querySelector('.congratulation');
 const congratulationBg = document.querySelector('.congratulation__bg');
-const scoreSection = document.querySelector('.score__section')
+const scoreSection = document.querySelector('.score__section');
 const scoreContainer = document.querySelector('.score__container');
-const scoreQuestionsSection = document.querySelector('.score-questions__section');
+const artHeaderNav = document.querySelector('.art__header__nav');
+const welcomeContent = document.querySelector('.welcome__content');
+const headerButtons = artHeaderNav.querySelectorAll('button');
+const scoreImage = document.querySelectorAll('.score__image');
+const welcomeCardText = document.querySelectorAll('.welcome__card__text');
+const categoriesCardImage = document.querySelectorAll(
+  '.categories__card__image'
+);
+const scoreQuestionsSection = document.querySelector(
+  '.score-questions__section'
+);
+const currentUnHideBlock = localStorage.getItem('currentHideBlock');
+
+const pageObject = {
+  currentSection: 0,
+};
+
+const highlightHeader = () => {
+  headerButtons.forEach((button) => {
+    button.classList.remove('highlight');
+  });
+  headerButtons[pageObject.currentSection].classList.add('highlight');
+};
+
+const cardsAnim = () => {
+  categoriesCardImage.forEach((card) => {
+    card.classList.remove('cardsAnim');
+  });
+  for (let i = 0; i < categoriesCardImage.length; i += 2) {
+    categoriesCardImage[i].classList.add('cardsAnim');
+  }
+  setTimeout(() => {
+    for (let i = 1; i < categoriesCardImage.length; i += 2) {
+      categoriesCardImage[i].classList.add('cardsAnim');
+    }
+  }, 400);
+};
+
+const animWelcomeCard = () => {
+  welcomeCardText.forEach((text) => {
+    text.classList.remove('textAnim');
+    text.classList.add('textAnim');
+  });
+  welcomeContent.classList.remove('welcomeCardsAnim');
+  welcomeContent.classList.add('welcomeCardsAnim');
+};
 
 const switchPage = (block = welcomeSection) => {
   if (!block) block = welcomeSection;
   for (let i = 0; i < hideBlocks.length; i++) {
     hideBlocks[i].classList.add('hide');
   }
+  if (block == welcomeSection) {
+    animWelcomeCard();
+    pageObject.currentSection = 0;
+  }
+  if (block == pictureCategoriesSection || block == artistsCategoriesSection) {
+    cardsAnim();
+    pageObject.currentSection = 1;
+  }
+  if (block == scoreSection) pageObject.currentSection = 2;
   block.classList.remove('hide');
   block.classList.add('changePage');
+
   localStorage.setItem('currentHideBlock', block.classList[0]);
+  highlightHeader();
 };
 switchPage(document.querySelector(`.${currentUnHideBlock}`));
 
@@ -73,13 +127,13 @@ pictureCategoriesSection.addEventListener('click', (e) => {
   }
 });
 
-categoryButton.addEventListener('click',()=>{
-  switchPage(artistsCategoriesSection)
-})
+categoryButton.addEventListener('click', () => {
+  switchPage(artistsCategoriesSection);
+});
 
-scoreButton.addEventListener('click',()=>{
-  switchPage(scoreSection)
-})
+scoreButton.addEventListener('click', () => {
+  switchPage(scoreSection);
+});
 
 scoreContainer.addEventListener('click', (e) => {
   let targetItem = e.target;

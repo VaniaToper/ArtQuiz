@@ -41,7 +41,7 @@ body {
     @include direction-column;
     box-shadow: 0px 0px 5px 0.5px rgba(39, 39, 39, 0.465);
   }
-  
+
   &__button {
     background: $red;
     border: 1.6px solid $red;
@@ -79,15 +79,127 @@ body {
     }
   }
 }
+.picture-info {
+  z-index: 2;
+  bottom: 0;
+  transform: translate(-50%, 200%);
+  gap: 10px 0;
+  border-radius: 4px 4px 0 0;
+  padding-bottom: 20px;
+  display: none;
+  &__indicator {
+    position: absolute;
+    top: 0%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+  }
+  .false {
+    background-image: url("../img/false.png");
+  }
+  .true {
+    background-image: url("../img/true.png");
+  }
+  &__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  span {
+    color: $black-medium;
+  }
+  &__author {
+    font-weight: 600;
+    color: #454545;
+    font-size: 16px;
+  }
+  &__year {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  &__name {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  &__button {
+    background: radial-gradient(circle, rgba(146, 45, 37, 1) 0%, rgb(136, 52, 41) 100%);
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    color: white;
+    width: 40%;
+    height: 30px;
+    transition: 0.2s;
+    border: 2px solid #922d25;
+    &:hover {
+      opacity: 0.9;
+    }
+    &:active {
+      background: white;
+      border: 2px solid #922d25;
+      color: #454545;
+      transform: scale(0.985);
+    }
+  }
+}
+
+.congratulation {
+  top: 20%;
+  z-index: 2;
+  transform: translate(-50%, 0%);
+  bottom: auto;
+  @include direction-column;
+  display: none;
+  &__image {
+    width: 50%;
+    height: 100px;
+    background-image: url("../img/congrats.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+  }
+  &__score {
+    margin: 30px 0;
+    font-size: 50px;
+    font-weight: 600;
+    color: #454545;
+  }
+  &__bg {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background: white;
+    width: 100vw;
+    height: 100vh;
+    transition: 2s;
+  }
+}
 
 .hide {
   display: none !important;
+}
+
+@media screen and(min-width: 500px) {
+  .picture-info {
+    width: 60%;
+  }
 }
 @media screen and(min-width: 768px) {
   .art {
     &__modal {
       max-height: 700px;
-      width: 70%;
+      span {
+        font-size: 14px;
+      }
+      .picture-info__author {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -103,24 +215,9 @@ body {
       font-size: 40px;
       line-height: 35px;
     }
-    &__home {
-      position: absolute;
-      left: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      &:active {
-        transform: translateY(-50%);
-      }
-    }
-    &__score {
-      position: absolute;
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      &:active {
-        transform: translateY(-50%);
-      }
-    }
+  }
+  .picture-info {
+    width: 40%;
   }
 }
 @media screen and(min-width: 1440px) {
@@ -128,6 +225,23 @@ body {
     &__modal {
       padding: 25px;
       width: 40%;
+    }
+  }
+  .picture-info {
+    width: 20%;
+    padding: 7px 7px 20px 7px;
+    &__image {
+      height: 350px;
+    }
+    span {
+      font-size: 16px;
+    }
+    &__author {
+      font-size: 22px !important;
+    }
+    &__button {
+      height: 40px;
+      font-size: 16px;
     }
   }
 }
@@ -190,8 +304,8 @@ body {
   }
 }
 .infoHideAnim {
-  display: none;
   animation: infoHideAnim 0.3s forwards ease-in-out;
+  display: none;
 }
 
 @keyframes changePhotoAnim {
@@ -249,4 +363,95 @@ body {
   animation: opacityAnim 0.2s ease-in forwards;
   opacity: 0.5;
   display: block;
+}
+
+@keyframes hideQuestions {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+.hideQuestions {
+  animation: hideQuestions 0.3s ease-in forwards;
+}
+
+@keyframes showQuestions {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+.showQuestions {
+  animation: showQuestions 0.3s ease-in forwards;
+}
+
+@-webkit-keyframes cardsAnim {
+  0% {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+}
+@keyframes cardsAnim {
+  0% {
+    opacity: 0;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+}
+
+.cardsAnim {
+  -webkit-animation: cardsAnim 0.4s cubic-bezier(0.89, 0.575, 0.565, 1) both;
+  animation: cardsAnim 0.4s cubic-bezier(0.89, 0.575, 0.565, 1) both;
+}
+
+@keyframes textAnim {
+  0% {
+    width: 0px;
+  }
+  99% {
+    width: 200px;
+  }
+  100% {
+    width: auto;
+  }
+}
+.textAnim {
+  animation: textAnim 0.7s ease-in forwards;
+}
+@keyframes welcomeCardsAnim {
+  0%{
+    gap: 0;
+  }
+  100%{
+    gap: 0 7%;
+  }
+}
+.welcomeCardsAnim {
+  animation: welcomeCardsAnim 0.4s ease-in forwards;
 }
