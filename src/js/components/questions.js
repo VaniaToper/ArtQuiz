@@ -1,4 +1,5 @@
-import { images } from './images';
+import { images } from './images.js';
+import { setTimer, isChecked } from './settings.js';
 const categoriesCard = document.querySelectorAll('.categories__card');
 const questionsImage = document.querySelector('.questions__image');
 const pictureInfoImage = document.querySelector('.picture-info__image');
@@ -13,6 +14,7 @@ const congratulationBg = document.querySelector('.congratulation__bg');
 const pictureAuthor = document.querySelector('.author');
 const pictureInfoButton = document.querySelector('.picture-info__button');
 const pictureInfoIndicator = document.querySelector('.picture-info__indicator');
+// const questionsAudio = document.querySelector('.picture-questions__audio');
 const questionsButton = document.querySelectorAll('.questions__button');
 const questionsImgButton = document.querySelectorAll('.questions__img');
 const score = document.querySelectorAll('.score');
@@ -67,6 +69,7 @@ window.addEventListener('load', () => {
   setButtonContent(questionsObject);
   getCategory(questionsObject);
   setPictureInfoContent(questionsObject);
+  setImageColor();
 });
 
 const checkForSameContent = () => {
@@ -98,6 +101,7 @@ const setButtonContent = (obj) => {
       ].src = `assets/img/img/${images[randomAuthor].imageNum}.jpg`;
       pictureAuthor.innerHTML = images[questionsObject.answer].author;
     } else {
+      console.log(questionsObject);
       questionsImage.src = `assets/img/img/${
         images[questionsObject.answer].imageNum
       }.jpg`;
@@ -134,6 +138,7 @@ export const putImgToCategories = (obj, cards) => {
       setPictureInfoContent(questionsObject);
       setButtonContent(questionsObject);
       getCategory(questionsObject);
+      setTimer(isChecked())
     });
   }
 };
@@ -146,9 +151,18 @@ export const setPictureInfoContent = (obj) => {
   pictureInfoAuthor.innerHTML = images[answer].author;
   pictureInfoYear.innerHTML = images[answer].year;
 };
-
+const setImageColor = () => {
+  for (let i = 0; i < categoriesCard.length; i++) {
+    categoriesCard[i].style.filter = `grayscale(${
+      100 - parseInt(score[i].innerHTML) * 10
+    }%)`;
+  }
+};
 const changeQuestion = (obj) => {
   let { answer, currentAnswer, score } = obj;
+  categoriesCard[questionsObject.currentCard].style.filter = `grayscale(${
+    100 - questionsObject.score * 10
+  }%)`;
   if (answer == parseInt(currentAnswer) + 10) {
     congratulationScore.innerHTML = score + '/10';
     congratulation.classList.add('congratsShowAnim');
@@ -158,7 +172,7 @@ const changeQuestion = (obj) => {
   pictureAuthor.innerHTML = images[questionsObject.answer].author;
   questionsImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
   setPictureInfoContent(questionsObject);
-
+  setTimer(isChecked());
   return questionsObject.answer;
 };
 changeQuestion(questionsObject);
@@ -201,6 +215,7 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
     targetItem.style.color = 'black';
   }
 });
+
 const setPictureInfoBg = () => {
   if (images[answer].isTrue == true) {
     pictureInfoIndicator.backgroundImage = 'url("../img/checked.png")';
@@ -208,6 +223,7 @@ const setPictureInfoBg = () => {
     pictureInfoIndicator.backgroundImage = 'none';
   }
 };
+
 export const hidePictureInfo = () => {
   document.addEventListener('click', (event) => {
     let { answer, currentCard, currentCategory } = questionsObject;
@@ -225,7 +241,6 @@ export const hidePictureInfo = () => {
       questionsImage.classList.remove('hideQuestions');
       questionsImage.classList.remove('showQuestions');
       questionsImage.classList.add('showQuestions');
-      console.log(questionsImage.classList);
     }
   });
 };
@@ -246,7 +261,6 @@ questionsChoices[1].addEventListener('click', (e) => {
       images[answer].isTrue = true;
       questionsObject.score += 1;
       score[questionsObject.currentCard].innerHTML = questionsObject.score;
-      console.log(questionsObject.score);
     } else {
       pictureInfoIndicator.classList.remove('true');
       pictureInfoIndicator.classList.add('false');

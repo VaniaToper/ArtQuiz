@@ -3,8 +3,8 @@ import {
   setPictureInfoContent,
   questionsObject,
   hidePictureInfo,
-} from './questions';
-import { images } from './images';
+} from './questions.js';
+import { images } from './images.js';
 const scoreImage = document.querySelectorAll('.score__image');
 const scoreContainer = document.querySelector('#score__container');
 const scoreQuestionsContainer = document.querySelector(
