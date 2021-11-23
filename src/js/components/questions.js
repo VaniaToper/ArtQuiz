@@ -101,7 +101,6 @@ const setButtonContent = (obj) => {
       ].src = `assets/img/img/${images[randomAuthor].imageNum}.jpg`;
       pictureAuthor.innerHTML = images[questionsObject.answer].author;
     } else {
-      console.log(questionsObject);
       questionsImage.src = `assets/img/img/${
         images[questionsObject.answer].imageNum
       }.jpg`;

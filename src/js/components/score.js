@@ -7,6 +7,9 @@ import {
 import { images } from './images.js';
 const scoreImage = document.querySelectorAll('.score__image');
 const scoreContainer = document.querySelector('#score__container');
+const pictureInfoIndicator = document.querySelector('.picture-info__indicator');
+const pictureInfoImage = document.querySelector('.picture-info__image');
+
 const scoreQuestionsContainer = document.querySelector(
   '.score-questions__container'
 );
@@ -43,12 +46,16 @@ const createImg = (obj) => {
   console.log(scoreObject.answer);
 
   for (let i = answer; i < answer + 10; i++) {
-    console.log(scoreObject.answer);
     scoreObject.answer = i;
     const questionsImage = document.createElement('img');
     questionsImage.classList = 'score__questions-images';
     if (images[scoreObject.answer].isTrue == true) {
+      pictureInfoIndicator.classList.remove('false');
+      pictureInfoIndicator.classList.add('true');
       questionsImage.classList.add('score__questions-images__true');
+    } else {
+      pictureInfoIndicator.classList.remove('true');
+      pictureInfoIndicator.classList.add('false');
     }
     questionsImage.src = `assets/img/img/${
       images[scoreObject.answer].imageNum
@@ -58,12 +65,20 @@ const createImg = (obj) => {
 };
 const showPictureInfo = () => {
   scoreQuestionsContainer.addEventListener('click', (e) => {
-    console.log(scoreObject.answer);
     let targetItem = e.target;
     if (targetItem.closest('.score__questions-images')) {
+      let arrayNumber = targetItem.src.split('').reverse().splice(0, 7);
+      let imageNumber = arrayNumber
+        .filter((number) => parseInt(number) == number)
+        .reverse()
+        .join('');
+      scoreObject.answer = imageNumber;
       setPictureInfoContent(scoreObject);
       pictureInfo.classList.remove('infoHideAnim');
       pictureInfo.classList.add('infoShowAnim');
+      pictureInfoImage.src = `assets/img/img/${
+        images[scoreObject.answer].imageNum
+      }.jpg`;
       congratulationBg.classList.remove('congratsBgShowAnim');
       congratulationBg.classList.add('congratsBgShowAnim');
     }
