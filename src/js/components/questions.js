@@ -14,7 +14,10 @@ const congratulationBg = document.querySelector('.congratulation__bg');
 const pictureAuthor = document.querySelector('.author');
 const pictureInfoButton = document.querySelector('.picture-info__button');
 const pictureInfoIndicator = document.querySelector('.picture-info__indicator');
-// const questionsAudio = document.querySelector('.picture-questions__audio');
+const questionsAudioCorrect = document.querySelector(
+  '.questions__audio-correct'
+);
+const questionsAudioWrong = document.querySelector('.questions__audio-wrong');
 const questionsButton = document.querySelectorAll('.questions__button');
 const questionsImgButton = document.querySelectorAll('.questions__img');
 const score = document.querySelectorAll('.score');
@@ -137,7 +140,7 @@ export const putImgToCategories = (obj, cards) => {
       setPictureInfoContent(questionsObject);
       setButtonContent(questionsObject);
       getCategory(questionsObject);
-      setTimer(isChecked())
+      setTimer(isChecked());
     });
   }
 };
@@ -181,6 +184,7 @@ questionsChoices[0].addEventListener('mousedown', (e) => {
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
     if (targetItem.innerHTML != images[answer].author) {
+      questionsAudioWrong.play();
       pictureInfoIndicator.classList.remove('true');
       pictureInfoIndicator.classList.add('false');
       targetItem.style.background = '#B40A1B';
@@ -188,6 +192,7 @@ questionsChoices[0].addEventListener('mousedown', (e) => {
       images[answer].isTrue = false;
       return;
     } else if (targetItem.innerHTML == images[answer].author) {
+      questionsAudioCorrect.play();
       pictureInfoIndicator.classList.remove('false');
       pictureInfoIndicator.classList.add('true');
       images[answer].isTrue = true;
@@ -206,7 +211,6 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
   questionsImage.classList.remove('showQuestions');
   questionsImage.classList.remove('hideQuestions');
   questionsImage.classList.add('hideQuestions');
-
   congratulationBg.classList.add('congratsBgShowAnim');
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
@@ -255,12 +259,14 @@ questionsChoices[1].addEventListener('click', (e) => {
       questionsImgButton[questionsObject.imgAnswer] ==
       targetItem.closest('.questions__img')
     ) {
+      questionsAudioCorrect.play();
       pictureInfoIndicator.classList.remove('false');
       pictureInfoIndicator.classList.add('true');
       images[answer].isTrue = true;
       questionsObject.score += 1;
       score[questionsObject.currentCard].innerHTML = questionsObject.score;
     } else {
+      questionsAudioWrong.play();
       pictureInfoIndicator.classList.remove('true');
       pictureInfoIndicator.classList.add('false');
       images[answer].isTrue = false;
