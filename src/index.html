@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Art Quiz</title>
+  </head>
+  <body>
+    <main class="art">
+      <header class="art__header">
+        <span class="art__header__text">Art</span>
+        <nav class="art__header__nav">
+          <button class="art__home">HOME</button>
+          <button class="art__category">CATEGORIES</button>
+          <button class="art__score">SCORE</button>
+        </nav>
+        <button class="art__header__settings"></button>
+      </header>
+
+      <section class="welcome art__section hide__block hide">
+        <div class="art__title">Home</div>
+        <div class="welcome__content">
+          <button class="welcome__card artist">
+            <span class="welcome__card__text">ARTISTS QUIZ</span>
+          </button>
+          <button class="welcome__card picture">
+            <span class="welcome__card__text">PICTURES QUIZ</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="settings art__section hide__block hide">
+        <div class="art__title">Settings</div>
+        <div class="settings__content">
+          <div class="card volume">
+            <div class="card__title">VOLUME</div>
+            <div class="card__control">
+              <button class="volume__button art__icon"></button>
+              <input
+                type="range"
+                class="volume__progress"
+                name="volume"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <div class="card volume">
+            <div class="card__title">TIME GAME</div>
+            <div class="card__control time__control">
+              <label for="s1">Off</label>
+              <input id="s1" type="checkbox" class="switch" />
+              <label for="s1">On</label>
+            </div>
+            <div class="card__control__intervals">
+              <input class="card__timer__intervals" type="radio" value="5" name="seconds" id="c1" />
+              <label for="c1">5s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c2" />
+              <label for="c2">10s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c3" />
+              <label for="c3">15s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c4" />
+              <label for="c4">20s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c5" />
+              <label for="c5">25s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c6" />
+              <label for="c6">30s</label>
+            </div>
+          </div>
+        </div>
+        <div class="settings__buttons">
+          <button type="submit" class="art__button settings__save">Save</button>
+          <button class="art__button settings__defaults">Defaults</button>
+        </div>
+      </section>
+      <section
+        class="artists__categories categories art__section hide__block hide"
+      >
+        <div class="art__title categories__header">Categories</div>
+        <div class="categories__content">
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">1</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-01.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">2</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-02.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">3</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-03.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">4</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-04.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">5</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-05.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">6</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-06.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">7</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-07.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">8</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-08.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">9</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-09.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">10</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-10.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">11</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-11.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card artists__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">12</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-12.jpg"
+              alt="error"
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        class="picture__categories categories art__section hide__block hide"
+      >
+        <div class="art__title categories__header">Categories</div>
+        <div class="categories__content">
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">13</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-13.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">14</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-14.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">15</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-15.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">16</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-16.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">17</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-17.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">18</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-18.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">19</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-19.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">20</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-20.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">21</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-21.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">22</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-22.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">23</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-23.jpg"
+              alt="error"
+            />
+          </div>
+          <div class="categories__card picture__card">
+            <div class="categories__card__header">
+              <div class="categories__card__numbers-wrapper">
+                <div class="categories__card__number">24</div>
+                <div class="categories__card__score">
+                  <span class="score">0</span>/10
+                </div>
+              </div>
+              <div class="categories__card__title">PORTRAIT</div>
+            </div>
+            <img
+              class="categories__card__image"
+              src="assets/img/category-24.jpg"
+              alt="error"
+            />
+          </div>
+        </div>
+      </section>
+      <div class="picture-info art__modal">
+        <div class="picture-info__indicator"></div>
+        <img
+          class="picture-info__image"
+          src="assets/img/img/0.jpg"
+          alt="error"
+        />
+        <span class="picture-info__name"></span>
+        <span class="picture-info__author"></span>
+        <span class="picture-info__year"></span>
+        <button class="picture-info__button">Continue</button>
+      </div>
+      <div class="congratulation art__modal">
+        <div class="congratulation__image"></div>
+        <div class="congratulation__score"></div>
+        <button class="congratulation__button art__button">Finish</button>
+      </div>
+      <div class="congratulation__bg"></div>
+      <section
+        class="artists__questions art__section questions hide__block hide"
+      >
+        <div class="art__title">Who is the author of this picture?</div>
+        <div class="questions__timer">
+          <input
+            value="0"
+            type="range"
+            class="questions__timer__input"
+            disabled
+            name=""
+            id=""
+          />
+          <span class="questions__timer__current">0</span>
+          <span class="questions__timer__total"></span>
+        </div>
+        <div class="questions__content">
+          <img
+            class="questions__image"
+            src="assets/img/img/0.jpg"
+            alt="error"
+          />
+          <div class="questions__choices questions__button-choices">
+            <button
+              class="questions__button questions__top-left-button"
+            ></button>
+            <button
+              class="questions__button questions__top-right-button"
+            ></button>
+            <button
+              class="questions__button questions__bottom-left-button"
+            ></button>
+            <button
+              class="questions__button questions__bottom-right-button"
+            ></button>
+          </div>
+        </div>
+      </section>
+      <section
+        class="picture__questions art__section questions hide__block hide"
+      >
+        <audio
+          class="questions__audio-correct"
+          src="assets/audio/correct.wav"
+        ></audio>
+        <audio
+          class="questions__audio-wrong"
+          src="assets/audio/wrong.wav"
+        ></audio>
+        <div class="questions__content">
+          <div class="art__title">
+            Which is <span class="author"></span> picture?
+          </div>
+          <div class="questions__choices questions__images">
+            <img
+              draggable="false"
+              class="questions__img"
+              src="assets/img/img/0.jpg"
+              alt="error"
+            />
+            <img
+              draggable="false"
+              class="questions__img"
+              src="assets/img/img/0.jpg"
+              alt="error"
+            />
+            <img
+              draggable="false"
+              class="questions__img"
+              src="assets/img/img/0.jpg"
+              alt="error"
+            />
+            <img
+              draggable="false"
+              class="questions__img"
+              src="assets/img/img/0.jpg"
+              alt="error"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="score__section art__section hide__block hide">
+        <div class="art__title">Score</div>
+        <div class="score__container" id="score__container">
+          <img
+            src="assets/img/category-01.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-02.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-03.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-04.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-05.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-06.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-07.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-08.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-09.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-10.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-11.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-12.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-13.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-14.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-15.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-16.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-17.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-18.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-19.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-20.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-21.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-22.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-23.jpg"
+            alt="error"
+            class="score__image"
+          />
+          <img
+            src="assets/img/category-24.jpg"
+            alt="error"
+            class="score__image"
+          />
+        </div>
+      </section>
+      <section class="score-questions__section art__section hide__block hide">
+        <div class="art__title">Score</div>
+        <div class="score-questions__container score__container"></div>
+      </section>
+    </main>
+    <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/components/images.js"></script>
+    <script type="module" src="js/components/settings.js"></script>
+    <script type="module" src="js/components/questions.js"></script>
+    <script type="module" src="js/components/score.js"></script>
+  </body>
+</html>

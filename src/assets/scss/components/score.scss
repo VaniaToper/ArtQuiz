@@ -1,0 +1,46 @@
+.score {
+  &__section{
+    justify-content: stretch;
+    gap: 10px;
+  }
+  &__container {
+    @include direction-row;
+    flex-wrap: wrap;
+    gap: 10px 0;
+
+  }
+  &__image{
+    border-radius: 10px;
+    width: calc(50% - 5px);
+    height: auto;
+    cursor: pointer;
+    &:hover{
+
+    }
+  }
+}
+.score__questions-images{
+  border-radius: 10px;
+  width: calc(50% - 5px);
+  height: auto;
+  cursor: pointer;
+  filter: grayscale(100%); 
+  &__true{
+    filter: grayscale(0%); 
+  }
+}
+@media screen and(min-width:768px) {
+  .score__container{
+    img{
+      width: calc(33.33% - 5px);
+    }
+  }
+}
+
+@media screen and(min-width:1440px) {
+  .score__container{
+    img{
+      width: calc(25% - 5px);
+    }
+  }
+}
