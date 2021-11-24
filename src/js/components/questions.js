@@ -1,5 +1,4 @@
 import { images } from './images.js';
-import { setTimer, isChecked } from './settings.js';
 const categoriesCard = document.querySelectorAll('.categories__card');
 const questionsImage = document.querySelector('.questions__image');
 const pictureInfoImage = document.querySelector('.picture-info__image');
@@ -32,9 +31,7 @@ export let questionsObject = {
   imgAnswer: 0,
   currentCategory: 0,
 };
-const asdsa = setTimer;
-console.log(asdsa);
-asdsa()
+
 function setLocalStorage(obj) {
   const { currentCard, answer } = obj;
   for (let i = 0; i < questionsButton.length; i++) {
@@ -142,7 +139,6 @@ export const putImgToCategories = (obj, cards) => {
       setPictureInfoContent(questionsObject);
       setButtonContent(questionsObject);
       getCategory(questionsObject);
-      // setTimer(isChecked(), wrongAnswer());
     });
   }
 };
@@ -191,11 +187,9 @@ const changeQuestion = (obj) => {
     congratulationBg.classList.add('congratsBgShowAnim');
     return;
   }
-
   pictureAuthor.innerHTML = images[questionsObject.answer].author;
   questionsImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
   setPictureInfoContent(questionsObject);
-  // setTimer(isChecked(), wrongAnswer());
   return questionsObject.answer;
 };
 changeQuestion(questionsObject);
@@ -231,14 +225,6 @@ questionsChoices[0].addEventListener('mouseup', (e) => {
     targetItem.style.color = 'black';
   }
 });
-
-const setPictureInfoBg = () => {
-  if (images[answer].isTrue == true) {
-    pictureInfoIndicator.backgroundImage = 'url("../img/checked.png")';
-  } else {
-    pictureInfoIndicator.backgroundImage = 'none';
-  }
-};
 
 export const hidePictureInfo = () => {
   document.addEventListener('click', (event) => {

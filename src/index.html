@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css" />
     <title>Art Quiz</title>
   </head>
   <body>
@@ -54,6 +54,20 @@
               <label for="s1">Off</label>
               <input id="s1" type="checkbox" class="switch" />
               <label for="s1">On</label>
+            </div>
+            <div class="card__control__intervals">
+              <input class="card__timer__intervals" type="radio" value="5" name="seconds" id="c1" />
+              <label for="c1">5s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c2" />
+              <label for="c2">10s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c3" />
+              <label for="c3">15s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c4" />
+              <label for="c4">20s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c5" />
+              <label for="c5">25s</label>
+              <input class="card__timer__intervals" type="radio" name="seconds" id="c6" />
+              <label for="c6">30s</label>
             </div>
           </div>
         </div>
@@ -483,10 +497,16 @@
       >
         <div class="art__title">Who is the author of this picture?</div>
         <div class="questions__timer">
-          <input value="0" type="range" class="questions__timer__input" disabled name="" id="" />
+          <input
+            value="0"
+            type="range"
+            class="questions__timer__input"
+            disabled
+            name=""
+            id=""
+          />
           <span class="questions__timer__current">0</span>
           <span class="questions__timer__total"></span>
-          
         </div>
         <div class="questions__content">
           <img
@@ -513,8 +533,14 @@
       <section
         class="picture__questions art__section questions hide__block hide"
       >
-      <audio class="questions__audio-correct" src="assets/audio/correct.wav"></audio>
-      <audio class="questions__audio-wrong" src="assets/audio/wrong.wav"></audio>
+        <audio
+          class="questions__audio-correct"
+          src="assets/audio/correct.wav"
+        ></audio>
+        <audio
+          class="questions__audio-wrong"
+          src="assets/audio/wrong.wav"
+        ></audio>
         <div class="questions__content">
           <div class="art__title">
             Which is <span class="author"></span> picture?
