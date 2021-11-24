@@ -195,7 +195,7 @@ const changeQuestion = (obj) => {
   pictureAuthor.innerHTML = images[questionsObject.answer].author;
   questionsImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
   setPictureInfoContent(questionsObject);
-  setTimer(isChecked(), wrongAnswer());
+  // setTimer(isChecked(), wrongAnswer());
   return questionsObject.answer;
 };
 changeQuestion(questionsObject);
