@@ -32,7 +32,9 @@ export let questionsObject = {
   imgAnswer: 0,
   currentCategory: 0,
 };
-
+const asdsa = setTimer;
+console.log(asdsa);
+asdsa()
 function setLocalStorage(obj) {
   const { currentCard, answer } = obj;
   for (let i = 0; i < questionsButton.length; i++) {
@@ -140,7 +142,7 @@ export const putImgToCategories = (obj, cards) => {
       setPictureInfoContent(questionsObject);
       setButtonContent(questionsObject);
       getCategory(questionsObject);
-      setTimer(isChecked());
+      // setTimer(isChecked(), wrongAnswer());
     });
   }
 };
@@ -160,6 +162,24 @@ const setImageColor = () => {
     }%)`;
   }
 };
+
+export const wrongAnswer = () => {
+  let { answer } = questionsObject;
+  questionsAudioWrong.play();
+  pictureInfoIndicator.classList.remove('true');
+  pictureInfoIndicator.classList.add('false');
+  images[answer].isTrue = false;
+};
+const correctAnswer = () => {
+  let { answer, currentCard } = questionsObject;
+  questionsAudioCorrect.play();
+  pictureInfoIndicator.classList.remove('false');
+  pictureInfoIndicator.classList.add('true');
+  images[answer].isTrue = true;
+  questionsObject.score += 1;
+  score[currentCard].innerHTML = questionsObject.score;
+};
+
 const changeQuestion = (obj) => {
   let { answer, currentAnswer, score } = obj;
   categoriesCard[questionsObject.currentCard].style.filter = `grayscale(${
@@ -171,10 +191,11 @@ const changeQuestion = (obj) => {
     congratulationBg.classList.add('congratsBgShowAnim');
     return;
   }
+
   pictureAuthor.innerHTML = images[questionsObject.answer].author;
   questionsImage.src = `assets/img/img/${images[answer].imageNum}.jpg`;
   setPictureInfoContent(questionsObject);
-  setTimer(isChecked());
+  setTimer(isChecked(), wrongAnswer());
   return questionsObject.answer;
 };
 changeQuestion(questionsObject);
@@ -184,22 +205,14 @@ questionsChoices[0].addEventListener('mousedown', (e) => {
   let targetItem = e.target;
   if (targetItem.closest('.questions__button')) {
     if (targetItem.innerHTML != images[answer].author) {
-      questionsAudioWrong.play();
-      pictureInfoIndicator.classList.remove('true');
-      pictureInfoIndicator.classList.add('false');
       targetItem.style.background = '#B40A1B';
       targetItem.style.color = 'white';
-      images[answer].isTrue = false;
+      wrongAnswer();
       return;
     } else if (targetItem.innerHTML == images[answer].author) {
-      questionsAudioCorrect.play();
-      pictureInfoIndicator.classList.remove('false');
-      pictureInfoIndicator.classList.add('true');
-      images[answer].isTrue = true;
       targetItem.style.background = '#4BB462';
       targetItem.style.color = 'white';
-      questionsObject.score += 1;
-      score[currentCard].innerHTML = questionsObject.score;
+      correctAnswer();
       return;
     }
   }
@@ -249,7 +262,6 @@ export const hidePictureInfo = () => {
 };
 hidePictureInfo();
 questionsChoices[1].addEventListener('click', (e) => {
-  let { currentCategory } = questionsObject;
   pictureInfo.classList.remove('infoHideAnim');
   pictureInfo.classList.add('infoShowAnim');
   congratulationBg.classList.add('congratsBgShowAnim');
@@ -259,17 +271,9 @@ questionsChoices[1].addEventListener('click', (e) => {
       questionsImgButton[questionsObject.imgAnswer] ==
       targetItem.closest('.questions__img')
     ) {
-      questionsAudioCorrect.play();
-      pictureInfoIndicator.classList.remove('false');
-      pictureInfoIndicator.classList.add('true');
-      images[answer].isTrue = true;
-      questionsObject.score += 1;
-      score[questionsObject.currentCard].innerHTML = questionsObject.score;
+      correctAnswer();
     } else {
-      questionsAudioWrong.play();
-      pictureInfoIndicator.classList.remove('true');
-      pictureInfoIndicator.classList.add('false');
-      images[answer].isTrue = false;
+      wrongAnswer();
     }
   }
 });

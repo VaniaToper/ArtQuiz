@@ -1,3 +1,4 @@
+
 const timerSwitch = document.querySelector('.switch');
 const settingsSaveButton = document.querySelector('.settings__save');
 const questionsTimer = document.querySelector('.questions__timer__input');
@@ -24,7 +25,6 @@ function getLocalStorage() {
 }
 window.addEventListener('load', () => {
   getLocalStorage();
-  setTimer();
 });
 
 export const isChecked = () => {
@@ -35,19 +35,24 @@ volumeProgress.addEventListener('change', () => {
   questionsAudioCorrect.volume = volumeProgress.value;
   questionsAudioWrong.volume = volumeProgress.value;
 });
-export const setTimer = (checkbox) => {
-  questionsChoices[0].addEventListener('click', (e) => {
-    let targetItem = e.target;
-    if (targetItem.closest('.questions__button')) {
-      if (checkbox) {
-        questionsTimer.value = 0;
-        questionsTimer.max = 30;
-        questionsTimerTotal.innerHTML = questionsTimer.max;
-        setInterval(() => {
-          questionsTimer.value = parseFloat(questionsTimer.value) + 1;
-          questionsTimerCurrent.innerHTML = questionsTimer.value;
-        }, 1000);
+
+export const setTimer = (checkbox, wrongAnswer) => {
+  if (checkbox) {
+    questionsTimer.value = 0;
+    questionsTimer.max = 30;
+    questionsTimerTotal.innerHTML = questionsTimer.max;
+    const timer = setInterval(() => {
+      questionsTimer.value = parseFloat(questionsTimer.value) + 1;
+      questionsTimerCurrent.innerHTML = questionsTimer.value;
+      questionsChoices[0].addEventListener('click', (e) => {
+        clearInterval(timer);
+      });
+      questionsChoices[1].addEventListener('click', (e) => {
+        clearInterval(timer);
+      });
+      if ((questionsTimer.value = 30)) {
+        wrongAnswer;
       }
-    }
-  });
+    }, 1000);
+  }
 };
